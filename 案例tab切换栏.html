@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		img{
+			width: 600px;
+			height: 480px;
+		}
+		ul{
+			height: 60px;
+			width: 600px;
+			font-size: 30px;
+			line-height: 60px;
+			border: solid 1px orange;
+			text-align: center;
+		}
+		ul li {
+			float: left;
+			cursor: pointer;
+			width: 25%;
+			text-align: center;
+			background-color: orange;
+		}
+		.imag{
+			display: none;
+		}
+		.active{
+			background-color: #567;
+		}
+		.current{
+			display: block;
+		}
+	</style>
+	<script type="text/javascript" src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li v-on:click='clk(index)' :class='currentIndex==index?"active":""' :key='item.id' v-for='(item,index) in list'>{{item.name}}</li>
+			
+		</ul>
+		<div :class='currentIndex==index?"current": ""' class="imag" :key='item.id' v-for='(item,index) in list'>
+			<img :src="item.path">
+
+		</div>
+	</div>
+<script type="text/javascript">
+	var vu = new Vue({
+		el:"#app",
+		data:{
+			currentIndex:0,
+			list:[{
+				id:1,
+				name:'苹果',
+				path:'./images/apple.jpeg'
+
+			},
+
+			{
+				id:2,
+				name:'香蕉',
+				path:'./images/banan.jpeg'
+
+			},
+			{
+				id:3,
+				name:'葡萄',
+				path:'./images/grape.jpeg'
+
+			},
+			{
+				id:4,
+				name:'橘子',
+				path:'./images/orange.jpeg'
+
+			}
+
+			]
+		},
+		methods:{
+			clk: function(index){
+				this.currentIndex = index;
+			}
+		}
+	});
+</script>
+</body>
+</html>
